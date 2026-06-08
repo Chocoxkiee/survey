@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Ulang Tahun! 🎂</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        /* Halaman Login (Tampilan Awal) */
+        #login-page {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 300px;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #ff4757;
+        }
+
+        /* Halaman Utama (Tampilan Setelah Login) */
+        #main-page {
+            display: none; /* Tersembunyi dulu */
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 { color: #ff6b6b; margin-bottom: 5px; }
+        p.subtitle { color: #888; font-size: 0.9rem; }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .media-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            padding: 10px;
+        }
+
+        img, video {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            display: block;
+            object-fit: cover;
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .caption {
+            margin-top: 5px;
+            font-size: 0.85rem;
+            color: #555;
+        }
+
+        /* Confetti Animation Background */
+        body.party {
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Halaman Login -->
+    <div id="login-page">
+        <h2>🎈 Ultah!</h2>
+        <p>Masukkan password untuk masuk:</p>
+        <input type="password" id="passwordInput" placeholder="Password">
+        <button onclick="checkPassword()">Buka Kejutan</button>
+        <p id="error-msg" style="color:red; font-size:12px; display:none;">Password salah!</p>
+    </div>
+
+    <!-- Halaman Utama / Galeri -->
+    <div id="main-page">
+        <header>
+            <h1>Happy Birthday! 🎂</h1>
+            <p class="subtitle">Selamat ulang tahun ya! Wish you all the best.</p>
+        </header>
+
+        <div class="gallery">
+            
+            <!-- Contoh Foto (Ganti src dengan nama file kamu) -->
+            <!-- Cara pakai: Simpan foto di folder yang sama, lalu tulis nama filenya di src -->
+            <div class="media-card">
+                <img src="foto1.jpg" alt="Foto 1" onerror="this.style.display='none'">
+                <div class="caption">Momen seru kita</div>
+            </div>
+
+            <!-- Contoh Video -->
+            <div class="media-card">
+                <video controls onerror="this.style.display='none'">
+                    <source src="video1.mp4" type="video/mp4">
+                    Browser kamu tidak mendukung video.
+                </video>
+                <div class="caption">Video lucu</div>
+            </div>
+
+            <!-- Contoh Voice Note (Audio) -->
+            <div class="media-card">
+                <div class="caption">🎤 Pesan dari kita</div>
+                <audio controls>
+                    <source src="vn1.mp3" type="audio/mpeg">
+                </audio>
+            </div>
+
+            <!-- Tambah Media Baru: Copy paste blok di bawah ini sesuai kebutuhan -->
+            <!-- 
+            <div class="media-card">
+                <img src="fotoku.jpg">
+                <div class="caption">Keterangan foto</div>
+            </div> 
+            -->
+
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <button onclick="exitParty()" style="background:#ccc; width: auto;">Kunci Lagi</button>
+        </div>
+    </div>
+
+    <script>
+        // --- CONFIGURATION ---
+        // Ganti password di bawah sini sesuai keinginan kamu!
+        const PASS = "ultah2024"; 
+        // ----------------------
+
+        function checkPassword() {
+            var input = document.getElementById('passwordInput').value;
+            if(input === PASS) {
+                document.getElementById('login-page').style.display = 'none';
+                document.getElementById('main-page').style.display = 'block';
+                document.body.classList.add('party');
+            } else {
+                document.getElementById('error-msg').style.display = 'block';
+            }
+        }
+
+        function exitParty() {
+            document.getElementById('passwordInput').value = "";
+            document.getElementById('login-page').style.display = 'block';
+            document.getElementById('main-page').style.display = 'none';
+            document.body.classList.remove('party');
+        }
+
+        // Cek Enter key agar lebih mudah
+        document.getElementById("passwordInput").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                checkPassword();
+            }
+        });
+    </script>
+</body>
+</html>
