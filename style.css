@@ -332,6 +332,17 @@ button:hover{
     animation-delay:1.2s;
 }
 
+.timeline-item:nth-child(4){
+    margin-left:auto;
+    transform:rotate(7deg);
+    animation-delay:1.7s;
+}
+
+.timeline-item:nth-child(5){
+    transform:rotate(-5deg);
+    animation-delay:2.2s;
+}
+
 @keyframes dropPhoto{
     0%{
         opacity:0;
@@ -400,7 +411,7 @@ button:hover{
 
 
 /* VIDEO */
-.gallery{
+/*.gallery{
     display:flex;
     justify-content:center;
 }
@@ -409,7 +420,7 @@ button:hover{
     width:100%;
     max-width:700px;
     border-radius:20px;
-}
+} */
 
 
 /* AUDIO */
